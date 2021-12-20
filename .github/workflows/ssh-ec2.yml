@@ -19,7 +19,7 @@ jobs:
       - name: connect to EC2
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: appleboy/ssh-action@master
-        with:
+        width:
            host: ${{ secrets.HOST }}
            username: ${{ secrets.USERNAME }}
            key: ${{ secrets.KEY }}
