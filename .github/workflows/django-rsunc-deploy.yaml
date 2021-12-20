@@ -15,5 +15,6 @@ jobs:
           switches: -avzr --delete
           remote_path: /www/django
           remote_host: ${{ secrets.HOST }}
+          remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.KEY }}
