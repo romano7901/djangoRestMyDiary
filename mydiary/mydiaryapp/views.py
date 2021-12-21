@@ -3,19 +3,15 @@ from rest_framework.views import APIView
 from .serializer import DiaryNoteSerializer
 from .models import DiaryNote
 from django.http import Http404
+from short import *
 
 
 # Create your views here.
 
 class MyHellAPIView(APIView):
     def get(self, request, format=None):
-        respStr = [
-
-            'Тестовый сервис 1',
-            'Нагрузочный сервис 2'
-
-        ]
-        return Response({'message': ' API tutvintage.ru', 'respString': respStr})
+        respStr = generateScheduleJson(3)
+        return Response({respStr})
 
 
 class MyDiaryNoteList(APIView):
@@ -37,3 +33,13 @@ class MyDiaryNoteDetail(APIView):
         mynote = self.get_object(pk)
         serial = DiaryNoteSerializer(mynote)
         return Response(serial.data)
+
+class ScheduleAPIView(APIView):
+    def get(self, request, format=None):
+        respStr = [
+
+            'Тестовый сервис 1',
+            'Нагрузочный сервис 2'
+
+        ]
+        return Response({'message': ' API tutvintage.ru', 'respString': respStr})
