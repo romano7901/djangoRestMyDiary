@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime
-import json
+
 
 def generateScheduleJson(maxDaysShedule):
 
@@ -145,7 +145,5 @@ def generateScheduleJson(maxDaysShedule):
         'sheduleList': shedule_resource}
 
     shedule_all.append(shedule_resource_main)
-
-    json_data = json.dumps(shedule_all, ensure_ascii=False)
 
     return shedule_all
