@@ -12,7 +12,10 @@ class MyHellAPIView(APIView):
         respStr = [
             'http://localhost:8000/mynotes/',
             'Сися Морковкина',
-            'Говняка расторгуев'
+            'Говняка расторгуев',
+            'Тестовый сервис 1',
+            'Нагрузочный сервис 2'
+
         ]
         return Response({'message': ' API tutvintage.ru', 'respString': respStr})
 
