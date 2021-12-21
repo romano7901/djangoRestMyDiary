@@ -13,7 +13,7 @@ jobs:
         uses: burnett01/rsync-deployments@5.1
         with:
           switches: -avzr --delete
-          remote_path: /www/django
+          remote_path: www/django
           remote_host: ${{ secrets.HOST }}
           remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USERNAME }}
