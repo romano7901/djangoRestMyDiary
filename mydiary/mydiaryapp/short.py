@@ -148,4 +148,4 @@ def generateScheduleJson(maxDaysShedule):
 
     json_data = json.dumps(shedule_all, ensure_ascii=False)
 
-    return json_data
+    return shedule_all

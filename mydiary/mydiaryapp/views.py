@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from .serializer import DiaryNoteSerializer
 from .models import DiaryNote
 from django.http import Http404
-from short import *
+from .short import *
 
 
 # Create your views here.
@@ -11,7 +11,7 @@ from short import *
 class MyHellAPIView(APIView):
     def get(self, request, format=None):
         respStr = generateScheduleJson(3)
-        return Response({respStr})
+        return Response(respStr)
 
 
 class MyDiaryNoteList(APIView):
