@@ -38,3 +38,31 @@ class Message(models.Model):
 
     def __str__(self):
         return self.text
+
+class Patient(models.Model):
+    patientId = models.IntegerField()
+    fullName = models.CharField(max_length=200)
+    birthDate = models.CharField(max_length=10)
+    policy = models.CharField(max_length=30)
+    lpuId = models.IntegerField()
+
+
+    def __str__(self):
+        return self.fullName
+
+class Resource(models.Model):
+    resourceId = models.IntegerField()
+    doctorId = models.IntegerField()
+    doctorName = models.CharField(max_length=255)
+    specialityId = models.IntegerField()
+    specialityName = models.CharField(max_length=255)
+    duration = models.IntegerField()
+    cabNum = models.CharField(max_length=25)
+    timeAvail = models.CharField(max_length=255)
+    timeUnavail = models.CharField(max_length=255)
+    maskAvail = models.CharField(max_length=20)
+    maskUnavail = models.CharField(max_length=20)
+    comment = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.doctorName

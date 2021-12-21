@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-nxsps@rrrxv9^4_d-70%d5oc8c5^0bnc_)sft2u=j&_ha8qz5n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.14.250.218' ,'127.0.0.1',]
+ALLOWED_HOSTS = ['52.14.250.218','127.0.0.1',]
 
 
 # Application definition
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'mydiary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
+        'NAME': 'scheduler',
         'USER': 'postgres',
         'PASSWORD': 'armadillo',
         'HOST': '52.14.250.218',

@@ -10,7 +10,7 @@ from .short import *
 
 class MyHellAPIView(APIView):
     def get(self, request, format=None):
-        respStr = []
+        respStr = generateScheduleJson(3)
         return Response(respStr)
 
 
@@ -35,11 +35,6 @@ class MyDiaryNoteDetail(APIView):
         return Response(serial.data)
 
 class ScheduleAPIView(APIView):
-    def get(self, request, format=None):
-        respStr = [
-
-            'Тестовый сервис 1',
-            'Нагрузочный сервис 2'
-
-        ]
-        return Response({'message': ' API tutvintage.ru', 'respString': respStr})
+     def get(self, request, start, days, resources, format=None):
+        respStr = generateScheduleJson(days, start, resources)
+        return Response(respStr)
