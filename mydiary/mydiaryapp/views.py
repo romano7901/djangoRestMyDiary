@@ -10,7 +10,7 @@ from .short import *
 
 class MyHellAPIView(APIView):
     def get(self, request, format=None):
-        respStr = generateScheduleJson(3)
+        respStr = []
         return Response(respStr)
 
 
