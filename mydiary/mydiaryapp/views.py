@@ -10,9 +10,7 @@ from django.http import Http404
 class MyHellAPIView(APIView):
     def get(self, request, format=None):
         respStr = [
-            'http://localhost:8000/mynotes/',
-            'Сися Морковкина',
-            'Говняка расторгуев',
+
             'Тестовый сервис 1',
             'Нагрузочный сервис 2'
 
