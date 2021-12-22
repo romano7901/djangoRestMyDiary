@@ -1,6 +1,6 @@
-from .models import DiaryNote, Message
-from .serializer import DiaryNoteSerializer, MessageSerializer
-from rest_framework import viewsets, permissions
+from .models import DiaryNote, Message, Resource
+from .serializer import DiaryNoteSerializer, MessageSerializer, ResourceSerializer
+from rest_framework import viewsets, permissions, filters
 
 
 class DiaryNoteViewSet(viewsets.ModelViewSet):
@@ -10,8 +10,9 @@ class DiaryNoteViewSet(viewsets.ModelViewSet):
 
 
 
-
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = MessageSerializer
+
+

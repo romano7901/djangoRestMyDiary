@@ -1,6 +1,15 @@
 from rest_framework import serializers
-from .models import DiaryNote, DiaryImage, Conversation, Message
+from .models import DiaryNote, DiaryImage, Conversation, Message, Patient, Resource
 
+class PatientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Patient
+        fields = '__all__'
+
+class ResourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Resource
+        fields = '__all__'
 
 class DiaryImageSerializer(serializers.ModelSerializer):
     class Meta:

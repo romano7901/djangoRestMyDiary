@@ -97,7 +97,7 @@ def generateScheduleJson(maxDaysShedule, start, resources):
     #  Сидорова С.С.Терапевт
     if '1234995567' in reslist:
         maskWP = '0000110'
-        maskWN = '0000000'
+        maskWN = '0000001'
         timeAvail = [(['14:00'], ['18:00'])]
         timeUnavail = [([], [])]
         comment = ''
