@@ -33,6 +33,7 @@ jobs:
                   cd www/django/mydiary
                   sudo docker stop mydiary
                   sudo docker container rm -f mydiary
+                  sudo docker image rm -f mydiary
                   sudo docker build -t mydiary .
                   sudo docker run -d -p 8000:8000 --name="mydiary" mydiary
 
