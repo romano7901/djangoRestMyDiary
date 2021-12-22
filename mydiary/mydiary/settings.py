@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'mydiary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'scheduler',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'armadillo',
         'HOST': '52.14.250.218',
