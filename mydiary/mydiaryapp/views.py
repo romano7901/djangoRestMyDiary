@@ -24,6 +24,7 @@ class MyDiaryNoteList(APIView):
     def get(self, request, format=None):
         return Response(self.serial.data)
 
+
 class PatientList(APIView):
     patientSet = Patient.objects.all()
 
@@ -34,6 +35,7 @@ class PatientList(APIView):
             self.patientSet = self.patientSet.filter(Q(fullName__icontains=search) | Q(policy__icontains=search))
         serial = PatientSerializer(self.patientSet, many=True)
         return Response(serial.data)
+
 
 class ResourceList(APIView):
     resourceSet = Resource.objects.all()
@@ -46,20 +48,7 @@ class ResourceList(APIView):
 
 
 
-
-class MyDiaryNoteDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return DiaryNote.objects.get(pk=pk)
-        except DiaryNote.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        mynote = self.get_object(pk)
-        serial = DiaryNoteSerializer(mynote)
-        return Response(serial.data)
-
 class ScheduleAPIView(APIView):
      def get(self, request, start, days, resources, format=None):
-        respStr = generateScheduleJson(days, start, resources)
-        return Response(respStr)
+        resp_str = generateScheduleJson(days, start, resources)
+        return Response(resp_str)
