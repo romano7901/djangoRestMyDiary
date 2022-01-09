@@ -33,14 +33,14 @@ class MyDiaryNoteList(APIView):
 
 
 class PatientList(APIView):
-    patientSet = Patient.objects.all()
+
 
     def get(self, request, format=None):
         search = request.query_params.get('search')
-
+        patientSet = []
         if search is not None:
-            self.patientSet = self.patientSet.filter(Q(fullName__icontains=search) | Q(policy__icontains=search))
-        serial = PatientSerializer(self.patientSet, many=True)
+            patientSet = Patient.objects.filter(Q(fullName__icontains=search) | Q(policy__icontains=search)).order_by('fullName')[:40]
+        serial = PatientSerializer(patientSet, many=True)
         return Response(serial.data)
 
 
