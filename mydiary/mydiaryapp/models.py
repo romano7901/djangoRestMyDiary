@@ -65,4 +65,15 @@ class Resource(models.Model):
     comment = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.doctorName
+        return self.doctorName + ' ' + self.specialityName  + ' каб.' + self.cabNum
+
+
+class ScheduleRecord(models.Model):
+    patientId = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    resourceId = models.ForeignKey(Resource, on_delete=models.CASCADE)
+    recordTime = models.CharField(max_length=5)
+    recordDate = models.DateTimeField()
+
+    def srecord_get(self):
+        return self.recordDate, self.patientId
+
