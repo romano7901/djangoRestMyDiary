@@ -39,7 +39,7 @@ class PatientList(APIView):
         search = request.query_params.get('search')
         patientSet = []
         if search is not None:
-            patientSet = Patient.objects.filter(Q(fullName__icontains=search) | Q(policy__icontains=search)).order_by('fullName')[:40]
+            patientSet = Patient.objects.filter(Q(fullName__istartswith=search) | Q(policy__istartswith=search)).order_by('fullName')[:40]
         serial = PatientSerializer(patientSet, many=True)
         return Response(serial.data)
 
