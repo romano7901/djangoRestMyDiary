@@ -46,10 +46,12 @@ def gen_resource_quote(shedule_resource, start, resourceId, r_id , max_days, mas
         patients_list = []
         for k in patients:
            time_from = da + 'T' + k.recordTime + ':00+03:00'
+           time_from = da + 'T 11:00 :00+03:00'
            patient = Patient.objects.get(id=k.patientId_id)
            one_record = {
                'patientId': patient.patientId,
-               'timeFrom': time_from
+               'timeFrom': time_from,
+               'timeFrom': time_to
            }
            patients_list.append(one_record)
         #print(patients_list)
