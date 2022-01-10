@@ -17,7 +17,7 @@ class MyHellAPIView(APIView):
             'Admin page':'http://52.14.250.218:8000/admin',
             'Patient search':'http://52.14.250.218:8000/patients/',
             'Resource list and search':'http://52.14.250.218:8000/resources/',
-            'Schedule for resource': 'http://52.14.250.218:8000/schedule/09.01.2022/0/1111,2222,3333,4444,6666,7777,8888,5555/'
+            'Schedule for resource': 'http://52.14.250.218:8000/schedule/17.01.2022/7/1111,2222,3333,4444,6666,7777,8888,5555/'
 
         }
 
