@@ -6,6 +6,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
     path('', MyHellAPIView.as_view()),
     path('schedule/<str:start>/<int:days>/<str:resources>/', ScheduleAPIView.as_view()),
+    path('patients/<str:id>/', PatientListById.as_view()),
     path('patients/', PatientList.as_view()),
     path('resources/', ResourceList.as_view()),
   ]

@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime
 from datetime import timedelta
-from .models import Resource, ScheduleRecord
+from .models import Resource, ScheduleRecord, Patient
 from django.db.models import Q
 import json
 
@@ -46,8 +46,9 @@ def gen_resource_quote(shedule_resource, start, resourceId, r_id , max_days, mas
         patients_list = []
         for k in patients:
            time_from = da + 'T' + k.recordTime + ':00+03:00'
+           patient = Patient.objects.get(id=k.patientId_id)
            one_record = {
-               'patientId': k.patientId_id,
+               'patientId': patient.patientId,
                'timeFrom': time_from
            }
            patients_list.append(one_record)
