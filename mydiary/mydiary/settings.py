@@ -29,6 +29,17 @@ ALLOWED_HOSTS = ['52.14.250.218','127.0.0.1']
 
 
 # Application definition
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'http://52.14.250.218:8000'
+]
+CORS_ALLOW_METHODS = [
+    "GET",
+    "OPTIONS",
+
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -74,17 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mydiary.wsgi.application'
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8000',
-    'http://52.14.250.218:8000'
-]
-CORS_ALLOW_METHODS = [
-    "GET",
-    "OPTIONS",
 
-]
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
