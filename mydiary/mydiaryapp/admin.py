@@ -6,7 +6,6 @@ from .models import Patient, Resource, ScheduleRecord
 
 class PatientAdmin(admin.ModelAdmin):
     list_display = ('fullName', 'policy')
-    list_filter = ('fullName', 'policy')
     list_display_links = ('fullName', 'policy')
     search_fields = ('fullName', 'policy')
 
