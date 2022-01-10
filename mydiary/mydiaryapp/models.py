@@ -72,6 +72,7 @@ class ScheduleRecord(models.Model):
     patientId = models.ForeignKey(Patient, on_delete=models.CASCADE)
     resourceId = models.ForeignKey(Resource, on_delete=models.CASCADE)
     recordTime = models.CharField(max_length=5)
+    recordTimeTo = models.CharField(max_length=5, null=True)
     recordDate = models.DateTimeField()
 
     def srecord_get(self):
