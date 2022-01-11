@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import DiaryNote, DiaryImage, Conversation, Message, Patient, Resource
+from .models import DiaryNote, DiaryImage, Conversation, Message, Patient, Resource, ScheduleRecord
 
 
 class PatientSerializer(serializers.ModelSerializer):
@@ -11,8 +11,13 @@ class PatientSerializer(serializers.ModelSerializer):
 class ResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Resource
-        fields = ['resourceId', 'doctorId', 'doctorName', 'specialityId', 'specialityName', 'duration', 'cabNum']
+        fields = ['resourceId', 'doctorId', 'doctorName', 'specialityId', 'specialityName', 'duration', 'cabNum', 'lpuName']
 
+
+class ScheduleRecordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ScheduleRecord
+        fields = '__all__'
 
 
 class DiaryImageSerializer(serializers.ModelSerializer):

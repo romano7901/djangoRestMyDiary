@@ -63,6 +63,7 @@ class Resource(models.Model):
     maskAvail = models.CharField(max_length=20)
     maskUnavail = models.CharField(max_length=20)
     comment = models.CharField(max_length=50)
+    lpuName = models.CharField(max_length=255, null=True)
 
     def __str__(self):
         return self.doctorName + ' ' + self.specialityName  + ' каб.' + self.cabNum

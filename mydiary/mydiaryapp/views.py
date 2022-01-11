@@ -1,10 +1,11 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import filters
-from .serializer import DiaryNoteSerializer, PatientSerializer, ResourceSerializer
-from .models import DiaryNote, Patient, Resource
+from .serializer import DiaryNoteSerializer, PatientSerializer, ResourceSerializer, ScheduleRecordSerializer
+from .models import DiaryNote, Patient, Resource, ScheduleRecord
 from django.http import Http404
 from .short import *
+from .dates import generateDatesJson
 from django.db.models import Q
 
 
@@ -17,6 +18,7 @@ class MyHellAPIView(APIView):
             'Admin page': 'http://52.14.250.218:8000/admin',
             'Patient search': 'http://52.14.250.218:8000/patients/?search=але',
             'Patients by id': 'http://52.14.250.218:8000/patients/1,2,3,4,5/',
+            'Available dates': 'http://52.14.250.218:8000/dates/1111,2222,3333,4444,6666,7777,8888,5555/',
             'Resource list and search': 'http://52.14.250.218:8000/resources/',
             'Schedule for resource': 'http://52.14.250.218:8000/schedule/17.01.2022/7/1111,2222,3333,4444,6666,7777,8888,5555/'
 
@@ -28,6 +30,14 @@ class MyHellAPIView(APIView):
 class MyDiaryNoteList(APIView):
     noteSet = DiaryNote.objects.all()
     serial = DiaryNoteSerializer(noteSet, many=True)
+
+    def get(self, request, format=None):
+        return Response(self.serial.data)
+
+
+class ScheduleList(APIView):
+    recordSet = ScheduleRecord.objects.all()
+    serial = ScheduleRecordSerializer(recordSet, many=True)
 
     def get(self, request, format=None):
         return Response(self.serial.data)
@@ -72,4 +82,9 @@ class ResourceList(APIView):
 class ScheduleAPIView(APIView):
     def get(self, request, start, days, resources, format=None):
         resp_str = generateScheduleJson(days, start, resources)
+        return Response(resp_str)
+
+class DatesAPIView(APIView):
+    def get(self, request, resources, format=None):
+        resp_str = generateDatesJson(resources)
         return Response(resp_str)

@@ -9,6 +9,8 @@ urlpatterns = [
     path('patients/<str:id>/', PatientListById.as_view()),
     path('patients/', PatientList.as_view()),
     path('resources/', ResourceList.as_view()),
+    path('record/', ScheduleList.as_view()),
+    path('dates/<str:resources>/',DatesAPIView.as_view()),
   ]
 
 
