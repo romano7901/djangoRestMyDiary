@@ -51,6 +51,9 @@ class PatientList(APIView):
         if search is not None:
             patientSet = Patient.objects.filter(
                 Q(fullName__istartswith=search) | Q(policy__istartswith=search)).order_by('fullName')[:40]
+        for pt in patientSet:
+            name = pt.fullName.split(' ')
+            pt.shortName = f'{name[0]} {name[1][0]}.{name[2][0]}.'
         serial = PatientSerializer(patientSet, many=True)
         return Response(serial.data)
 
@@ -63,6 +66,9 @@ class PatientListById(APIView):
         if id is not None:
             id_list = id.split(',')
             patientSet = Patient.objects.filter(patientId__in=id_list)
+        for pt in patientSet:
+            name = pt.fullName.split(' ')
+            pt.shortName = f'{name[0]} {name[1][0]}.{name[2][0]}.'
         serial = PatientSerializer(patientSet, many=True)
         return Response(serial.data)
 

@@ -42,6 +42,7 @@ class Message(models.Model):
 class Patient(models.Model):
     patientId = models.IntegerField()
     fullName = models.CharField(max_length=200)
+    shortName = models.CharField(max_length=100,null=True)
     birthDate = models.CharField(max_length=10)
     policy = models.CharField(max_length=30)
     lpuId = models.IntegerField()

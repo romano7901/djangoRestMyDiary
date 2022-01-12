@@ -5,7 +5,7 @@ from .models import DiaryNote, DiaryImage, Conversation, Message, Patient, Resou
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = ['patientId', 'fullName', 'birthDate', 'policy', 'lpuId']
+        fields = ['patientId', 'fullName', 'shortName', 'birthDate', 'policy', 'lpuId']
 
 
 class ResourceSerializer(serializers.ModelSerializer):
