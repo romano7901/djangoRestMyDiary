@@ -48,8 +48,14 @@ def gen_resource_quote(shedule_resource, start, resourceId, r_id , max_days, mas
            time_from = da + 'T' + k.recordTime + ':00+03:00'
            time_to = da + 'T' + k.recordTimeTo + ':00+03:00'
            patient = Patient.objects.get(id=k.patientId_id)
+           name = patient.fullName.split(' ')
            one_record = {
                'patientId': patient.patientId,
+               'fullName': patient.fullName,
+               'shortName': f'{name[0]} {name[1][0]}.{name[2][0]}.',
+               'birthDate': patient.birthDate,
+               'policy': patient.policy,
+               'lpuId': patient.lpuId,
                'timeFrom': time_from,
                'timeTo': time_to,
            }
