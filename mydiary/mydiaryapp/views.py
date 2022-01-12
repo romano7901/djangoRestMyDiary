@@ -55,6 +55,16 @@ class RecordAdd(APIView):
         record.save()
         return Response('Ok')
 
+class RecordDel(APIView):
+    permission_classes = (AllowAny,)
+
+    def get(self, request, format=None):
+        return Response("ok")
+
+    def post(self, request, format=None):
+        record = ScheduleRecord(pk=request.data['recId'])
+        record.delete()
+        return Response('Ok')
 
 class PatientList(APIView):
 

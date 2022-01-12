@@ -58,6 +58,7 @@ def gen_resource_quote(shedule_resource, start, resourceId, r_id , max_days, mas
            patient = Patient.objects.get(id=k.patientId_id)
            name = patient.fullName.split(' ')
            one_record = {
+               'recId': k.id,
                'patientId': patient.patientId,
                'fullName': patient.fullName,
                'shortName': f'{name[0]} {name[1][0]}.{name[2][0]}.',
