@@ -20,21 +20,29 @@ def gen_day_quote(timeStart, timeEnd, avail, comment, time_quotes, patients_list
 
 
 # Generate quotes for all days by week masks and time intervals
-def gen_resource_quote(shedule_resource, start, resourceId, r_id , max_days, maskWP, maskWN, timeA, timeU):
+def gen_resource_quote(shedule_resource, start, resourceId, r_id , max_days, maskWP, maskWN, maskAdd, timeA, timeU, timeAa):
     dateAvail = []
     dateUnavail = []
-
+    dateAdd = []
 
     timeAvail = json.loads(timeA)
-    timeUnavail = json.loads(timeU)
-
+    if (timeU is not None):
+         timeUnavail = json.loads(timeU)
+    else:
+        timeUnavail = []
+    if (timeAa is not None):
+        timeAdd = json.loads(timeAa)
+    else:
+        timeAdd = []
     startDate = datetime.strptime(start, '%d.%m.%Y')
     toDate = startDate + timedelta(days=max_days)
 
     # generate appointment dates
     dateAvail = pd.bdate_range(startDate, toDate, freq='C', weekmask=maskWP, holidays=None) \
         .strftime("%Y-%m-%d").tolist()
-    dateUnavail = pd.bdate_range(startDate, toDate, freq='C', weekmask=maskWN, holidays=None) \
+    if (maskWN is not None): dateUnavail = pd.bdate_range(startDate, toDate, freq='C', weekmask=maskWN, holidays=None) \
+        .strftime("%Y-%m-%d").tolist()
+    if (maskAdd is not None): dateAdd = pd.bdate_range(startDate, toDate, freq='C', weekmask=maskAdd, holidays=None) \
         .strftime("%Y-%m-%d").tolist()
 
     # get all records for resourceId
@@ -67,9 +75,12 @@ def gen_resource_quote(shedule_resource, start, resourceId, r_id , max_days, mas
         for i in timeAvail:
            gen_day_quote(da + 'T' + i[0] + ':00+03:00', da + 'T' + i[1] + ':00+03:00', True, '', time_quotes, patients_list)
            if da in dateUnavail:
-             for j in timeUnavail:
-                gen_day_quote(da + 'T' + j[0] + ':00+03:00', da + 'T' + j[1] + ':00+03:00', False, j[2], time_quotes, patients_list)
-
+                 for j in timeUnavail:
+                    gen_day_quote(da + 'T' + j[0] + ':00+03:00', da + 'T' + j[1] + ':00+03:00', False, j[2], time_quotes, patients_list)
+           if da in dateAdd:
+               for m in timeAdd:
+                   gen_day_quote(da + 'T' + m[0] + ':00+03:00', da + 'T' + m[1] + ':00+03:00', False, m[2], time_quotes,
+                                 patients_list)
         shedule_resource_date = {
             'resourceId': resourceId,
             'timeQuotes': time_quotes
@@ -88,7 +99,7 @@ def generateScheduleJson(max_days, start, resources):
                            resource.resourceId,
                            resource.id,
                            max_days-1,
-                           resource.maskAvail, resource.maskUnavail,
-                           resource.timeAvail, resource.timeUnavail)
+                           resource.maskAvail, resource.maskUnavail,resource.maskUnavail_add,
+                           resource.timeAvail, resource.timeUnavail,resource.timeUnavail_add)
 
     return shedule_resource

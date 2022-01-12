@@ -1,4 +1,5 @@
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from rest_framework import filters
 from .serializer import DiaryNoteSerializer, PatientSerializer, ResourceSerializer, ScheduleRecordSerializer
@@ -35,12 +36,24 @@ class MyDiaryNoteList(APIView):
         return Response(self.serial.data)
 
 
-class ScheduleList(APIView):
-    recordSet = ScheduleRecord.objects.all()
-    serial = ScheduleRecordSerializer(recordSet, many=True)
+class RecordAdd(APIView):
+    permission_classes = (AllowAny,)
 
     def get(self, request, format=None):
-        return Response(self.serial.data)
+        return Response("ok")
+
+    def post(self, request, format=None):
+        patient = Patient.objects.get(patientId=request.data['patientId'])
+        resource = Resource.objects.get(resourceId=request.data['resourceId'])
+        record = ScheduleRecord(
+            patientId=patient,
+            resourceId=resource,
+            recordTime=request.data['timeFrom'],
+            recordTimeTo=request.data['timeTo'],
+            recordDate=datetime.strptime(request.data['date'], '%d.%m.%Y')
+        )
+        record.save()
+        return Response('Ok')
 
 
 class PatientList(APIView):
@@ -89,6 +102,8 @@ class ScheduleAPIView(APIView):
     def get(self, request, start, days, resources, format=None):
         resp_str = generateScheduleJson(days, start, resources)
         return Response(resp_str)
+
+
 
 class DatesAPIView(APIView):
     def get(self, request, resources, format=None):

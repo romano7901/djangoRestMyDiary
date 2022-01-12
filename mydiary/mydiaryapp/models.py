@@ -60,11 +60,14 @@ class Resource(models.Model):
     duration = models.IntegerField()
     cabNum = models.CharField(max_length=25)
     timeAvail = models.CharField(max_length=255)
-    timeUnavail = models.CharField(max_length=255)
+    timeUnavail = models.CharField(max_length=255, null=True, blank=True)
     maskAvail = models.CharField(max_length=20)
-    maskUnavail = models.CharField(max_length=20)
+    maskUnavail = models.CharField(max_length=20, null=True, blank=True)
     comment = models.CharField(max_length=50)
     lpuName = models.CharField(max_length=255, null=True)
+
+    timeUnavail_add = models.CharField(max_length=255, null=True, blank=True)
+    maskUnavail_add = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.doctorName + ' ' + self.specialityName  + ' каб.' + self.cabNum

@@ -37,7 +37,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ALLOW_METHODS = [
     "GET",
-    "PUT"
+    "PUT",
+    "POST",
     "OPTIONS",
 
 ]
@@ -147,5 +148,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['rest_framework.permissions.AllowAny']
 }
