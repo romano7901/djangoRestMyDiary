@@ -50,7 +50,7 @@ def gen_resource_quote(shedule_resource, start, resourceId, r_id , max_days, mas
     for da in dateAvail:
         da_ = datetime.strptime(da, '%Y-%m-%d').date()
         # check if has patient on this date and resourceId then add section patients resourceId=r_id
-        patients = ScheduleRecord.objects.filter(Q(recordDate__date=da_)&Q(resourceId=r_id))
+        patients = ScheduleRecord.objects.filter(Q(recordDate__date=da_)&Q(resourceId=r_id)).order_by('recordTime')
         patients_list = []
         for k in patients:
            time_from = da + 'T' + k.recordTime + ':00+03:00'
