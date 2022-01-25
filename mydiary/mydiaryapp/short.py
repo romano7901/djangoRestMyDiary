@@ -82,9 +82,12 @@ def gen_resource_quote(shedule_resource, start, resourceId, r_id , max_days, mas
                for m in timeAdd:
                    gen_day_quote(da + 'T' + m[0] + ':00+03:00', da + 'T' + m[1] + ':00+03:00', False, m[2], time_quotes,
                                  patients_list)
+        day_of_year = pd.Timestamp(da_).day_of_year
         shedule_resource_date = {
             'resourceId': resourceId,
-            'timeQuotes': time_quotes
+            'day': day_of_year,
+            'timeQuotes': time_quotes,
+
         }
         shedule_resource.append(shedule_resource_date)
 
